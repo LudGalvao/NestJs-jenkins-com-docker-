@@ -1,0 +1,35 @@
+-- Passo 1: Criar o banco de dados
+CREATE DATABASE FutebolDB;
+
+-- Usar o banco de dados criado
+USE FutebolDB;
+
+-- Passo 2: Criar a tabela de Times
+CREATE TABLE Times (
+    id_time INT AUTO_INCREMENT PRIMARY KEY, -- Identificador único do time
+    nome_time VARCHAR(100) NOT NULL        -- Nome do time
+);
+
+-- Passo 3: Criar a tabela de Jogadores
+CREATE TABLE Jogadores (
+    id_jogador INT AUTO_INCREMENT PRIMARY KEY, -- Identificador único do jogador
+    nome_jogador VARCHAR(100) NOT NULL,        -- Nome do jogador
+    posicao VARCHAR(50) NOT NULL,              -- Posição que o jogador atua
+    id_time INT,                               -- Chave estrangeira (time do jogador)
+    FOREIGN KEY (id_time) REFERENCES Times(id_time) -- Relacionamento com a tabela Times
+);
+
+-- Passo 4: Inserir dados na tabela Times
+INSERT INTO Times (nome_time) VALUES 
+('Barcelona'),
+('Real Madrid'),
+('Paris Saint-Germain'),
+('Manchester United');
+
+-- Passo 5: Inserir dados na tabela Jogadores
+INSERT INTO Jogadores (nome_jogador, posicao, id_time) VALUES 
+('Lionel Messi', 'Atacante', 1),         -- Barcelona
+('Cristiano Ronaldo', 'Atacante', 2),   -- Real Madrid
+('Neymar Jr.', 'Meio-campo', 3),        -- PSG
+('Casemiro', 'Volante', 4),             -- Manchester United
+('Gerard Piqué', 'Zagueiro', 1);        -- Barcelona
